@@ -5,19 +5,19 @@ from string import ascii_letters
 from urllib import request
 
 def countofmax():
-    url = 'https://habr.com/ru/post/'
     l = 500000
     r = 2000000
     while r > l:
-        m = (l+r)//2
-        if request.urlopen("http://www.stackoverflow.com").getcode() == 200:
-            l = m+1
-        else:
+        m = (l + r) // 2
+        try:
+            k = request.urlopen('https://habr.com/ru/post/' + str(m) + '/').getcode()
+            l = m + 1
+        except Exception:
             r = m
     return m
 
 def topten(mas):
-    for i in range(10):
+    for i in range(20):
         print(str(i+1)+')', mas[i][0])
 
 def format(mas):
@@ -25,7 +25,7 @@ def format(mas):
     for i in mas:
         if (len(i) <= 2) or validate(i) or i in pretexesnmonthes:
             mas[i] = 0
-    return mas.most_common(10)
+    return mas.most_common(20)
 
 def validate(nickname):
     return all(map(lambda c: c in ascii_letters, nickname))
@@ -41,7 +41,7 @@ def filezation():
     return s
 
 maxperiod = countofmax()//3 + 2
-period = 20
+period = 10
 
 e1 = threading.Event()
 e2 = threading.Event()
