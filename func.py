@@ -1,9 +1,5 @@
 from urllib import request
 from bs4 import BeautifulSoup as bs
-from collections import Counter
-
-
-
 
 def htmltotext(html):
     text = html.get_text()
@@ -23,9 +19,6 @@ def cleaning(s):
 def scriptout(html):
     for script in html(["script", "style"]):
         script.extract()
-
-
-
 
 def get_html(num):
     url = 'https://habr.com/ru/post/' + str(num) + '/'
@@ -50,4 +43,3 @@ def get_words(start, end, event_for_wait, event_for_set):
         except Exception:
             pass
     event_for_set.set()
-

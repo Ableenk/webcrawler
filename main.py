@@ -2,6 +2,19 @@ import threading
 from func import get_words
 from collections import Counter
 from string import ascii_letters
+from urllib import request
+
+def countofmax():
+    url = 'https://habr.com/ru/post/'
+    l = 500000
+    r = 2000000
+    while r > l:
+        m = (l+r)//2
+        if request.urlopen("http://www.stackoverflow.com").getcode() == 200:
+            l = m+1
+        else:
+            r = m
+    return m
 
 def topten(mas):
     for i in range(10):
@@ -27,7 +40,8 @@ def filezation():
     f.close()
     return s
 
-period = 10
+maxperiod = countofmax()//3 + 2
+period = 20
 
 e1 = threading.Event()
 e2 = threading.Event()
