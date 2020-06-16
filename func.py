@@ -31,7 +31,6 @@ def writing(s):
         output.write(s + '\n')
 
 def get_words(start, end, event_for_wait, event_for_set):
-    max_page = 506123
     event_for_wait.wait()
     event_for_wait.clear()
     for i in range(start, end):
